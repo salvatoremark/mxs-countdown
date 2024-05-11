@@ -114,29 +114,18 @@ function Edit({
     label: "Date",
     value: countdownDate,
     onChange: evaluateDateInput
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-    multiple: true,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select format'),
-    value: countdownUnits,
-    options: [{
-      label: 'days',
-      value: 'd'
-    }, {
-      label: 'hours',
-      value: 'h'
-    }, {
-      label: 'minutes',
-      value: 'm'
-    }, {
-      label: 'seconds',
-      value: 's'
-    }],
-    onChange: countdownUnits => {
-      setAttributes({
-        countdownUnits
-      });
-    },
-    __nextHasNoMarginBottom: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: "Label",
+    value: countdownLabel,
+    onChange: countdownLabel => setAttributes({
+      countdownLabel
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: "Message",
+    value: countdownMessage,
+    onChange: countdownMessage => setAttributes({
+      countdownMessage
+    })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
     label: "Units Delimeter",
     value: countdownUnitsDelimeter,
@@ -157,18 +146,6 @@ function Edit({
       countdownUnitsDelimeter
     }),
     __nextHasNoMarginBottom: true
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-    label: "Label",
-    value: countdownLabel,
-    onChange: countdownLabel => setAttributes({
-      countdownLabel
-    })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-    label: "Message",
-    value: countdownMessage,
-    onChange: countdownMessage => setAttributes({
-      countdownMessage
-    })
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

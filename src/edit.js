@@ -135,35 +135,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ countdownDate }
 						onChange={ evaluateDateInput }
 					/>
-					<SelectControl
-						multiple
-						label={ __( 'Select format' ) }
-						value={ countdownUnits }
-						options={ [
-							{ label: 'days', value: 'd' },
-							{ label: 'hours', value: 'h' },
-							{ label: 'minutes', value: 'm' },
-							{ label: 'seconds', value: 's' },
-						] }
-						onChange={ ( countdownUnits ) => {
-							setAttributes( { countdownUnits } );
-						} }
-						__nextHasNoMarginBottom
-					/>
-					<SelectControl
-						label="Units Delimeter"
-						value={ countdownUnitsDelimeter }
-						options={ [
-							{ label: '•', value: '•' },
-							{ label: '>', value: '>' },
-							{ label: ':', value: ':' },
-							{ label: '|', value: '|' },
-						] }
-						onChange={ ( countdownUnitsDelimeter ) =>
-							setAttributes( { countdownUnitsDelimeter } )
-						}
-						__nextHasNoMarginBottom
-					/>
+
 					<TextControl
 						label="Label"
 						value={ countdownLabel }
@@ -177,6 +149,21 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( countdownMessage ) =>
 							setAttributes( { countdownMessage } )
 						}
+					/>
+
+					<SelectControl
+						label="Units Delimeter"
+						value={ countdownUnitsDelimeter }
+						options={ [
+							{ label: '•', value: '•' },
+							{ label: '>', value: '>' },
+							{ label: ':', value: ':' },
+							{ label: '|', value: '|' },
+						] }
+						onChange={ ( countdownUnitsDelimeter ) =>
+							setAttributes( { countdownUnitsDelimeter } )
+						}
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 			</InspectorControls>
