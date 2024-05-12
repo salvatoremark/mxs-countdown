@@ -9,11 +9,28 @@
   "description": "A new block created by the create-block tool using a custom external project template.",
   "example": {
     "attributes": {
-      "textInput": "Example text input",
-      "fontSize": 8
+      "countdownDate": "01/01/2025",
+      "countdownHeading": "Countdown to New Year",
+      "countdownHeadingLevel": 6,
+      "countdownHeadingFontSize": "1.32",
+      "countdownFontSize": ".8",
+      "countdownMessage": "Happy New Year 2025!",
+      "countdownUnits": "[d,h,m,s]",
+      "countdownUnitsDelimeter": ":",
+      "textAlign": "center",
+      "boxWidth": 22
     }
   },
   "attributes": {
+    "style": {
+      "type": "object",
+      "default": {
+        "color": {
+          "background": "#fff",
+          "text": "#666"
+        }
+      }
+    },
     "countdownDate": {
       "type": "string",
       "default": "01/01/2025"
@@ -28,15 +45,15 @@
     },
     "countdownHeadingFontSize": {
       "type": "string",
-      "default": "2"
+      "default": "1.32"
     },
     "countdownFontSize": {
       "type": "string",
-      "default": "1"
+      "default": ".8"
     },
     "countdownMessage": {
       "type": "string",
-      "default": "Happy New Year!"
+      "default": "Happy New Year 2025!"
     },
     "countdownUnits": {
       "type": "array",
@@ -46,27 +63,13 @@
       "type": "string",
       "default": ":"
     },
-    "style": {
-      "type": "object",
-      "padding": {
-        "top": "1em",
-        "right": "1em",
-        "bottom": "1em",
-        "left": "1em"
-      },
-      "default": {
-        "color": {
-          "background": "#F9F9F9"
-        }
-      }
-    },
     "textAlign": {
       "type": "string",
       "default": "center"
     },
     "boxWidth": {
       "type": "integer",
-      "default": 30
+      "default": 22
     }
   },
   "supports": {
@@ -76,9 +79,9 @@
       "full"
     ],
     "color": {
-      "background": true,
+      "heading": true,
       "text": true,
-      "heading": true
+      "background": true
     },
     "spacing": {
       "padding": true,
