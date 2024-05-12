@@ -18,9 +18,21 @@
       "type": "string",
       "default": "01/01/2025"
     },
-    "countdownLabel": {
+    "countdownHeading": {
       "type": "string",
       "default": "Countdown to the New Year"
+    },
+    "countdownHeadingLevel": {
+      "type": "integer",
+      "default": 6
+    },
+    "countdownHeadingFontSize": {
+      "type": "string",
+      "default": "2"
+    },
+    "countdownFontSize": {
+      "type": "string",
+      "default": "1"
     },
     "countdownMessage": {
       "type": "string",
@@ -48,27 +60,25 @@
         }
       }
     },
-    "textInput": {
-      "type": "string",
-      "default": "Write to me!",
-      "source": "text",
-      "selector": "div"
-    },
     "textAlign": {
       "type": "string",
       "default": "center"
     },
-    "fontSize": {
-      "type": "number",
-      "default": 5
+    "boxWidth": {
+      "type": "integer",
+      "default": 30
     }
   },
   "supports": {
     "html": false,
-    "align": true,
+    "align": [
+      "wide",
+      "full"
+    ],
     "color": {
       "background": true,
-      "text": true
+      "text": true,
+      "heading": true
     },
     "spacing": {
       "padding": true,
