@@ -5,20 +5,20 @@
   "version": "0.1.0",
   "title": "MXS Countdown",
   "category": "widgets",
-  "icon": "superhero",
+  "icon": "clock",
   "description": "A new block created by the create-block tool using a custom external project template.",
   "example": {
     "attributes": {
       "countdownDate": "01/01/2025",
       "countdownHeading": "Countdown to New Year",
       "countdownHeadingLevel": 6,
-      "countdownHeadingFontSize": "1.32",
-      "countdownFontSize": ".8",
+      "countdownHeadingFontSize": "2",
+      "countdownFontSize": "1.2",
       "countdownMessage": "Happy New Year 2025!",
       "countdownUnits": "[d,h,m,s]",
       "countdownUnitsDelimeter": ":",
       "textAlign": "center",
-      "boxWidth": 22
+      "boxWidth": 80
     }
   },
   "attributes": {
