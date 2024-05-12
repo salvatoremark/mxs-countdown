@@ -7,9 +7,11 @@ import {
 	BlockControls,
 	AlignmentToolbar,
 	InspectorControls,
+	InnerBlocks,
 } from '@wordpress/block-editor';
 import { useEffect, useRef } from '@wordpress/element';
 import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
+import { DatePicker } from '@wordpress/components';
 
 /**
  * Internal Dependencies
@@ -100,15 +102,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 	};
 
-	// YOU DONT WANT THIS VALUE TO Participate until it's 10 chars
-	const evaluateDateInput = ( incomingString ) => {
-		if ( incomingString.length === 10 ) {
-			setAttributes( {
-				countdownDate: incomingString,
-			} );
-		}
-	};
-
 	useEffect( () => {
 		timer = setInterval( showRemaining, 1000 );
 		return () => clearInterval( timer );
@@ -130,10 +123,12 @@ export default function Edit( { attributes, setAttributes } ) {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
-					<TextControl
-						label="Date"
-						value={ countdownDate }
-						onChange={ evaluateDateInput }
+					<DatePicker
+						currentDate={ countdownDate }
+						onChange={ ( countdownDate ) =>
+							setAttributes( { countdownDate } )
+						}
+						is12Hour={ false }
 					/>
 
 					<TextControl
