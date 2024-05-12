@@ -9,7 +9,14 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { useEffect, useRef } from '@wordpress/element';
-import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
+import {
+	PanelBody,
+	RangeControl,
+	TextControl,
+	SelectControl,
+} from '@wordpress/components';
+import { DatePicker } from '@wordpress/components';
+import { __experimentalHeading as Heading } from '@wordpress/components';
 
 /**
  * Internal Dependencies
@@ -20,17 +27,24 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	const {
 		countdownDate,
-		countdownLabel,
+		countdownHeading,
+		countdownHeadingLevel,
 		countdownMessage,
 		countdownUnits,
 		countdownUnitsDelimeter,
+		countdownHeadingFontSize,
+		countdownFontSize,
 		textAlign,
+		boxWidth,
 	} = attributes;
 
+	const inlineStyles = {
+		maxWidth: boxWidth + 'rem',
+	};
 	const blockProps = useBlockProps( {
 		className: `has-text-align-${ textAlign }`,
+		style: inlineStyles,
 	} );
-
 	const daysRef = useRef();
 	const hoursRef = useRef();
 	const minutesRef = useRef();
@@ -100,24 +114,17 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 	};
 
-	// YOU DONT WANT THIS VALUE TO Participate until it's 10 chars
-	const evaluateDateInput = ( incomingString ) => {
-		if ( incomingString.length === 10 ) {
-			setAttributes( {
-				countdownDate: incomingString,
-			} );
-		}
-	};
-
 	useEffect( () => {
 		timer = setInterval( showRemaining, 1000 );
 		return () => clearInterval( timer );
 	}, [
 		countdownDate,
-		countdownLabel,
+		countdownHeading,
 		countdownMessage,
 		countdownUnits,
 		countdownUnitsDelimeter,
+		countdownFontSize,
+		countdownHeadingFontSize,
 	] );
 
 	return (
@@ -129,22 +136,42 @@ export default function Edit( { attributes, setAttributes } ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
+				<PanelBody title={ __( 'Target Date' ) } initialOpen={ false }>
+					<DatePicker
+						currentDate={ countdownDate }
+						onChange={ ( countdownDate ) =>
+							setAttributes( { countdownDate } )
+						}
+					/>
+				</PanelBody>
+
+				<PanelBody title={ __( 'Settings' ) } initialOpen={ false }>
 					<TextControl
-						label="Date"
-						value={ countdownDate }
-						onChange={ evaluateDateInput }
+						label="Heading"
+						value={ countdownHeading }
+						onChange={ ( countdownHeading ) =>
+							setAttributes( { countdownHeading } )
+						}
+					/>
+					<SelectControl
+						label="Heading Level"
+						value={ countdownHeadingLevel }
+						options={ [
+							{ label: 'h1', value: '1' },
+							{ label: 'h2', value: '2' },
+							{ label: 'h3', value: '3' },
+							{ label: 'h4', value: '4' },
+							{ label: 'h5', value: '5' },
+							{ label: 'h6', value: '6' },
+						] }
+						onChange={ ( countdownHeadingLevel ) =>
+							setAttributes( { countdownHeadingLevel } )
+						}
+						__nextHasNoMarginBottom
 					/>
 
 					<TextControl
-						label="Label"
-						value={ countdownLabel }
-						onChange={ ( countdownLabel ) =>
-							setAttributes( { countdownLabel } )
-						}
-					/>
-					<TextControl
-						label="Message"
+						label="Target Date Message"
 						value={ countdownMessage }
 						onChange={ ( countdownMessage ) =>
 							setAttributes( { countdownMessage } )
@@ -165,31 +192,65 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						__nextHasNoMarginBottom
 					/>
+
+					<TextControl
+						label="Heading Size (rem)"
+						value={ countdownHeadingFontSize }
+						onChange={ ( countdownHeadingFontSize ) =>
+							setAttributes( { countdownHeadingFontSize } )
+						}
+					/>
+					<TextControl
+						label="Countdown Size (rem)"
+						value={ countdownFontSize }
+						onChange={ ( countdownFontSize ) =>
+							setAttributes( { countdownFontSize } )
+						}
+					/>
+					<RangeControl
+						label="Box Width"
+						value={ boxWidth }
+						onChange={ ( boxWidth ) =>
+							setAttributes( { boxWidth } )
+						}
+						min={ 3 }
+						max={ 100 }
+					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<div { ...blockProps }>
+				{ countdownHeading && (
+					<Heading
+						ref={ countdownRef }
+						className={ `countdownText countdownHeadingFontSize-${ countdownHeadingFontSize }` }
+						level={ countdownHeadingLevel }
+						isBlock="false"
+						style={ {
+							fontSize:
+								Number( countdownHeadingFontSize ) + 'rem',
+						} }
+					>
+						{ countdownHeading }
+					</Heading>
+				) }
 				<div
 					id="mxs-countdown"
-					ref={ countdownRef }
-					className="mxs-countdown"
+					style={ {
+						fontSize: Number( countdownFontSize ) + 'rem',
+					} }
 				>
-					{ countdownLabel && (
-						<div className="target-date-label">
-							{ countdownLabel }
-						</div>
-					) }
 					{ countdownUnits.includes( 'd' ) && (
-						<span ref={ daysRef }></span>
+						<span className="days" ref={ daysRef }></span>
 					) }
 					{ countdownUnits.includes( 'h' ) && (
-						<span ref={ hoursRef }></span>
+						<span className="hours" ref={ hoursRef }></span>
 					) }
 					{ countdownUnits.includes( 'm' ) && (
-						<span ref={ minutesRef }></span>
+						<span className="minutes" ref={ minutesRef }></span>
 					) }
 					{ countdownUnits.includes( 's' ) && (
-						<span ref={ secondsRef }></span>
+						<span className="seconds" ref={ secondsRef }></span>
 					) }
 				</div>
 			</div>
