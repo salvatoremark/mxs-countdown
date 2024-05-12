@@ -178,21 +178,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 					/>
 
-					<TextControl
-						label="Heading FontSize (rem)"
-						value={ countdownHeadingFontSize }
-						onChange={ ( countdownHeadingFontSize ) =>
-							setAttributes( { countdownHeadingFontSize } )
-						}
-					/>
-					<TextControl
-						label="Countdown FontSize (rem)"
-						value={ countdownFontSize }
-						onChange={ ( countdownFontSize ) =>
-							setAttributes( { countdownFontSize } )
-						}
-					/>
-
 					<SelectControl
 						label="Units Delimeter"
 						value={ countdownUnitsDelimeter }
@@ -206,6 +191,21 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { countdownUnitsDelimeter } )
 						}
 						__nextHasNoMarginBottom
+					/>
+
+					<TextControl
+						label="Heading Size (rem)"
+						value={ countdownHeadingFontSize }
+						onChange={ ( countdownHeadingFontSize ) =>
+							setAttributes( { countdownHeadingFontSize } )
+						}
+					/>
+					<TextControl
+						label="Countdown Size (rem)"
+						value={ countdownFontSize }
+						onChange={ ( countdownFontSize ) =>
+							setAttributes( { countdownFontSize } )
+						}
 					/>
 					<RangeControl
 						label="Box Width"
