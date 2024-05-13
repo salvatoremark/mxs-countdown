@@ -15,7 +15,6 @@
       "countdownHeadingFontSize": "2",
       "countdownFontSize": "1.2",
       "countdownMessage": "Happy New Year 2025!",
-      "countdownUnits": "[d,h,m,s]",
       "countdownUnitsDelimeter": ":",
       "textAlign": "center",
       "boxWidth": 80
@@ -54,10 +53,6 @@
     "countdownMessage": {
       "type": "string",
       "default": "Happy New Year 2025!"
-    },
-    "countdownUnits": {
-      "type": "array",
-      "default": "[d,h,m,s]"
     },
     "countdownUnitsDelimeter": {
       "type": "string",
