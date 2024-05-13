@@ -1,13 +1,15 @@
-/*! Countdown clock for AEP */
 document.addEventListener( 'DOMContentLoaded', () => {
+	console.log( 'DOM fully loaded and parsed' );
+
 	( function () {
+		console.log( 'Now loading the functions' );
+
 		const countdownDate = '';
 		const countdownMessage = '';
 		const countdownId = 'mxs-countdown';
 
-		CountDownTimer();
-
-		function CountDownTimer() {
+		function CountdownTimer() {
+			console.log( 'inside countdowntimer' );
 			let timer;
 
 			const end = new Date( countdownDate );
@@ -17,10 +19,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const _day = _hour * 24;
 
 			function showRemaining() {
+				console.log( 'inside showRemaining' );
+
 				const now = new Date();
 				const distance = end - now;
 				if ( distance < 0 ) {
 					clearInterval( timer );
+					console.log( 'Timer is complete, so output message' );
+
 					document.getElementById( countdownId ).innerHTML =
 						countdownMessage;
 					return;
@@ -44,7 +50,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 			timer = setInterval( showRemaining, 1000 );
 		}
+		CountdownTimer();
 	} )();
-
-	console.log( 'DOM fully loaded and parsed' );
 } );
