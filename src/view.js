@@ -1,10 +1,9 @@
 document.addEventListener( 'DOMContentLoaded', () => {
 	( function () {
 		const countdownId = 'mxs-countdown';
-		const countdownDate =
-			document.getElementById( 'countdownDate' ).innerHTML;
+		const countdownDate = document.getElementById( 'countdownDate' ).value;
 		const countdownMessage =
-			document.getElementById( 'countdownMessage' ).innerHTML;
+			document.getElementById( 'countdownMessage' ).value;
 
 		function CountdownTimer() {
 			let timer;
