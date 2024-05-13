@@ -30,7 +30,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		countdownHeading,
 		countdownHeadingLevel,
 		countdownMessage,
-		countdownUnits,
 		countdownUnitsDelimeter,
 		countdownHeadingFontSize,
 		countdownFontSize,
@@ -77,18 +76,15 @@ export default function Edit( { attributes, setAttributes } ) {
 			daysRef.current !== null &&
 			typeof daysRef.current !== 'undefined'
 		) {
-			countdownUnits.includes( 'd' )
-				? ( daysRef.current.innerHTML = days + ' days' )
-				: '';
+			daysRef.current.innerHTML = days + ' days';
 		}
 
 		if (
 			hoursRef.current !== null &&
 			typeof hoursRef.current !== 'undefined'
 		) {
-			hoursRef.current.innerHTML = countdownUnits.includes( 'd' )
-				? ' ' + countdownUnitsDelimeter + ' ' + hours + ' hours'
-				: hours + ' hours';
+			hoursRef.current.innerHTML =
+				' ' + countdownUnitsDelimeter + ' ' + hours + ' hours';
 		}
 
 		if (
@@ -96,9 +92,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			typeof minutesRef.current !== 'undefined'
 		) {
 			minutesRef.current.innerHTML =
-				countdownUnits.includes( 'd' ) || countdownUnits.includes( 'h' )
-					? ' ' + countdownUnitsDelimeter + ' ' + minutes + ' minutes'
-					: minutes + ' minutes';
+				' ' + countdownUnitsDelimeter + ' ' + minutes + ' minutes';
 		}
 
 		if (
@@ -106,11 +100,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			typeof secondsRef.current !== 'undefined'
 		) {
 			secondsRef.current.innerHTML =
-				countdownUnits.includes( 'd' ) ||
-				countdownUnits.includes( 'h' ) ||
-				countdownUnits.includes( 'm' )
-					? ' ' + countdownUnitsDelimeter + ' ' + seconds + ' seconds'
-					: seconds + ' seconds';
+				' ' + countdownUnitsDelimeter + ' ' + seconds + ' seconds';
 		}
 	};
 
@@ -121,7 +111,6 @@ export default function Edit( { attributes, setAttributes } ) {
 		countdownDate,
 		countdownHeading,
 		countdownMessage,
-		countdownUnits,
 		countdownUnitsDelimeter,
 		countdownFontSize,
 		countdownHeadingFontSize,
@@ -240,18 +229,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						fontSize: Number( countdownFontSize ) + 'rem',
 					} }
 				>
-					{ countdownUnits.includes( 'd' ) && (
-						<span className="days" ref={ daysRef }></span>
-					) }
-					{ countdownUnits.includes( 'h' ) && (
-						<span className="hours" ref={ hoursRef }></span>
-					) }
-					{ countdownUnits.includes( 'm' ) && (
-						<span className="minutes" ref={ minutesRef }></span>
-					) }
-					{ countdownUnits.includes( 's' ) && (
-						<span className="seconds" ref={ secondsRef }></span>
-					) }
+					<span className="days" ref={ daysRef }></span>
+					<span className="hours" ref={ hoursRef }></span>
+					<span className="minutes" ref={ minutesRef }></span>
+					<span className="seconds" ref={ secondsRef }></span>
 				</div>
 			</div>
 		</>
