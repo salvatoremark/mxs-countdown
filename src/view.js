@@ -4,10 +4,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		const countdownDate = document.getElementById( 'countdownDate' ).value;
 		const countdownMessage =
 			document.getElementById( 'countdownMessage' ).value;
+		const countdownUnitsDelimeter = document.getElementById(
+			'countdownUnitsDelimeter'
+		).value;
 
 		function CountdownTimer() {
 			let timer;
-
 			const end = new Date( countdownDate );
 			const _second = 1000;
 			const _minute = _second * 60;
@@ -15,14 +17,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const _day = _hour * 24;
 
 			function showRemaining() {
-				// console.log( 'inside showRemaining' );
-
 				const now = new Date();
 				const distance = end - now;
 				if ( distance < 0 ) {
 					clearInterval( timer );
-					console.log( 'Timer is complete, so output message' );
-
 					document.getElementById( countdownId ).innerHTML =
 						countdownMessage;
 					return;
@@ -33,14 +31,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				const minutes = Math.floor( ( distance % _hour ) / _minute );
 				const seconds = Math.floor( ( distance % _minute ) / _second );
 
-				const d = ( document.getElementById( 'days' ).innerHTML =
-					days + ' days ' );
-				const h = ( document.getElementById( 'hours' ).innerHTML =
-					hours + ' hours ' );
-				const m = ( document.getElementById( 'minutes' ).innerHTML =
-					minutes + ' minutes ' );
-				const s = ( document.getElementById( 'seconds' ).innerHTML =
-					seconds + ' seconds' );
+				document.getElementById( 'days' ).innerHTML =
+					days + ' days ' + countdownUnitsDelimeter + ' ';
+				document.getElementById( 'hours' ).innerHTML =
+					hours + ' hours ' + countdownUnitsDelimeter + ' ';
+				document.getElementById( 'minutes' ).innerHTML =
+					minutes + ' minutes ' + countdownUnitsDelimeter + ' ';
+				document.getElementById( 'seconds' ).innerHTML =
+					seconds + ' seconds';
 			}
 
 			timer = setInterval( showRemaining, 1000 );

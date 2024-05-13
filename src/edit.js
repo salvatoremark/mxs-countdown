@@ -16,7 +16,6 @@ import {
 	SelectControl,
 } from '@wordpress/components';
 import { DatePicker } from '@wordpress/components';
-import { __experimentalHeading as Heading } from '@wordpress/components';
 
 /**
  * Internal Dependencies
@@ -28,7 +27,6 @@ export default function Edit( {
 	attributes: {
 		countdownDate,
 		countdownHeading,
-		countdownHeadingLevel,
 		countdownMessage,
 		countdownUnitsDelimeter,
 		countdownHeadingFontSize,
@@ -77,31 +75,40 @@ export default function Edit( {
 			daysRef.current !== null &&
 			typeof daysRef.current !== 'undefined'
 		) {
-			daysRef.current.innerHTML = days + ' days';
+			__(
+				( daysRef.current.innerHTML = days + ' days' ),
+				metadata.textdomain
+			);
 		}
 
 		if (
 			hoursRef.current !== null &&
 			typeof hoursRef.current !== 'undefined'
 		) {
-			hoursRef.current.innerHTML =
-				' ' + countdownUnitsDelimeter + ' ' + hours + ' hours';
+			hoursRef.current.innerHTML = __(
+				' ' + countdownUnitsDelimeter + ' ' + hours + ' hours',
+				metadata.textdomain
+			);
 		}
 
 		if (
 			minutesRef.current !== null &&
 			typeof minutesRef.current !== 'undefined'
 		) {
-			minutesRef.current.innerHTML =
-				' ' + countdownUnitsDelimeter + ' ' + minutes + ' minutes';
+			minutesRef.current.innerHTML = __(
+				' ' + countdownUnitsDelimeter + ' ' + minutes + ' minutes',
+				metadata.textdomain
+			);
 		}
 
 		if (
 			secondsRef.current !== null &&
 			typeof secondsRef.current !== 'undefined'
 		) {
-			secondsRef.current.innerHTML =
-				' ' + countdownUnitsDelimeter + ' ' + seconds + ' seconds';
+			secondsRef.current.innerHTML = __(
+				' ' + countdownUnitsDelimeter + ' ' + seconds + ' seconds',
+				metadata.textdomain
+			);
 		}
 	};
 
@@ -142,22 +149,6 @@ export default function Edit( {
 						onChange={ ( countdownHeading ) =>
 							setAttributes( { countdownHeading } )
 						}
-					/>
-					<SelectControl
-						label="Heading Level"
-						value={ countdownHeadingLevel }
-						options={ [
-							{ label: 'h1', value: '1' },
-							{ label: 'h2', value: '2' },
-							{ label: 'h3', value: '3' },
-							{ label: 'h4', value: '4' },
-							{ label: 'h5', value: '5' },
-							{ label: 'h6', value: '6' },
-						] }
-						onChange={ ( countdownHeadingLevel ) =>
-							setAttributes( { countdownHeadingLevel } )
-						}
-						__nextHasNoMarginBottom
 					/>
 
 					<TextControl
@@ -209,25 +200,22 @@ export default function Edit( {
 				</PanelBody>
 			</InspectorControls>
 
-			<div { ...blockProps }>
+			<article { ...blockProps }>
 				{ countdownHeading && (
-					<Heading
+					<h6
 						ref={ countdownRef }
 						className={ `countdownText countdownHeadingFontSize-${ countdownHeadingFontSize }` }
-						level={ countdownHeadingLevel }
-						isBlock="false"
 						style={ {
-							fontSize:
-								Number( countdownHeadingFontSize ) + 'rem',
+							fontSize: countdownHeadingFontSize + 'rem',
 						} }
 					>
-						{ countdownHeading }
-					</Heading>
+						{ __( countdownHeading, metadata.textdomain ) }
+					</h6>
 				) }
 				<div
 					id="mxs-countdown"
 					style={ {
-						fontSize: Number( countdownFontSize ) + 'rem',
+						fontSize: countdownFontSize + 'rem',
 					} }
 				>
 					<span className="days" ref={ daysRef }></span>
@@ -235,7 +223,7 @@ export default function Edit( {
 					<span className="minutes" ref={ minutesRef }></span>
 					<span className="seconds" ref={ secondsRef }></span>
 				</div>
-			</div>
+			</article>
 		</>
 	);
 }
