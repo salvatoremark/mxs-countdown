@@ -1,6 +1,9 @@
 document.addEventListener( 'DOMContentLoaded', () => {
 	console.log( 'DOM fully loaded and parsed' );
 
+	document.getElementById( 'mxs-countdown' ).innerHTML =
+		'This is starting to work.';
+
 	( function () {
 		console.log( 'Now loading the functions' );
 

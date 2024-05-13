@@ -24,8 +24,8 @@ import { __experimentalHeading as Heading } from '@wordpress/components';
 import metadata from './block.json';
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes } ) {
-	const {
+export default function Edit( {
+	attributes: {
 		countdownDate,
 		countdownHeading,
 		countdownHeadingLevel,
@@ -35,8 +35,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		countdownFontSize,
 		textAlign,
 		boxWidth,
-	} = attributes;
-
+	},
+	setAttributes,
+} ) {
 	const inlineStyles = {
 		maxWidth: boxWidth + 'rem',
 	};
