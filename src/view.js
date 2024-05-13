@@ -1,18 +1,12 @@
 document.addEventListener( 'DOMContentLoaded', () => {
-	console.log( 'DOM fully loaded and parsed' );
-
-	document.getElementById( 'mxs-countdown' ).innerHTML =
-		'This is starting to work.';
-
 	( function () {
-		console.log( 'Now loading the functions' );
-
-		const countdownDate = '';
-		const countdownMessage = '';
 		const countdownId = 'mxs-countdown';
+		const countdownDate =
+			document.getElementById( 'countdownDate' ).innerHTML;
+		const countdownMessage =
+			document.getElementById( 'countdownMessage' ).innerHTML;
 
 		function CountdownTimer() {
-			console.log( 'inside countdowntimer' );
 			let timer;
 
 			const end = new Date( countdownDate );
@@ -22,7 +16,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const _day = _hour * 24;
 
 			function showRemaining() {
-				console.log( 'inside showRemaining' );
+				// console.log( 'inside showRemaining' );
 
 				const now = new Date();
 				const distance = end - now;
@@ -40,15 +34,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				const minutes = Math.floor( ( distance % _hour ) / _minute );
 				const seconds = Math.floor( ( distance % _minute ) / _second );
 
-				const d = document.querySelector( `.day` );
-				const h = document.querySelector( `.hour` );
-				const m = document.querySelector( `.min` );
-				const s = document.querySelector( `.sec` );
-
-				if ( d ) d.innerHTML = days;
-				if ( h ) h.innerHTML = hours;
-				if ( m ) m.innerHTML = minutes;
-				if ( s ) s.innerHTML = seconds;
+				const d = ( document.getElementById( 'days' ).innerHTML =
+					days + ' days ' );
+				const h = ( document.getElementById( 'hours' ).innerHTML =
+					hours + ' hours ' );
+				const m = ( document.getElementById( 'minutes' ).innerHTML =
+					minutes + ' minutes ' );
+				const s = ( document.getElementById( 'seconds' ).innerHTML =
+					seconds + ' seconds' );
 			}
 
 			timer = setInterval( showRemaining, 1000 );
